@@ -85,8 +85,8 @@ foreach ($gateways_status as $a_gateway) {
     $gateway['monitorip'] = $a_gateway['monitorip'];
     $gateway['sourceip'] = $a_gateway['srcip'];
     $gateway['gatewayip'] = $a_gateways[$a_gateway['name']]['gateway'];
-    $gateway['delay'] = $a_gateway['delay'];
-    $gateway['loss'] = $a_gateway['loss'];
+    $gateway['delay'] = sprintf("%02.1f", preg_replace("/[^0-9.]/", '', $a_gateway['delay'])) . 'ms';
+    $gateway['loss'] = sprintf("%02.1f", preg_replace("/[^0-9.]/", '', $a_gateway['loss'])) . '%';
     if ($_GET['rates'] === '1') {
         get_interface_rates($iface, $inKbps, $outKbps);
         $gateway['inKbps'] = $inKbps;
